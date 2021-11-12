@@ -170,7 +170,7 @@ ul li {
   }
   .left,
   .right {
-    width: 80vw;
+    width: 85vw;
   }
   .time {
     display: none;
@@ -194,17 +194,27 @@ ul li {
     width: 390px;
   }
   .stick h2 {
-    font-size: 20px;
-  }
-  .stick p {
     font-size: 15px;
   }
+  .stick p {
+    font-size: 12px;
+  }
   .stickin i {
-    font-size: 18px;
+    font-size: 15px;
   }
   .fa-check-square {
     top: -13%;
     font-size: 20px;
     left: 95%;
+  }
+  .lists li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    letter-spacing: normal;
+  }
+  nav {
+    font-size: 25px;
+    margin-top: 10px;
   }
 } ;
