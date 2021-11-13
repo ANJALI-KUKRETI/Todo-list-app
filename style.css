@@ -3,31 +3,32 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: "Mochiy Pop One", sans-serif;
   font-family: "Poppins", sans-serif;
   color: rgb(44, 43, 43);
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(
     to bottom right,
     rgb(240, 234, 238),
     rgb(137, 146, 151)
   );
+  overflow: hidden;
 }
-.outer {
-  padding: 2em 7em;
-}
+
 nav {
   display: flex;
   justify-content: space-between;
   font-size: 30px;
   font-weight: bold;
+  margin: 10px 50px;
 }
 /* -----------main---------- */
 .main {
   margin: 2em 0em;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .left {
   background-color: rgb(250, 244, 244);
@@ -80,7 +81,7 @@ ul li {
 }
 .right .select {
   position: absolute;
-  right: 7em;
+  /* right: 7em; */
   z-index: 1;
 }
 .filter-todo {
@@ -150,9 +151,7 @@ ul li {
   .main {
     justify-content: space-around;
   }
-  .outer {
-    padding: 0 2em;
-  }
+
   .left {
     padding: 3px;
     align-items: center;
@@ -163,6 +162,11 @@ ul li {
 }
 
 @media only screen and (max-width: 750px) {
+  .outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .main {
     flex-direction: column;
     margin: 0px;
@@ -176,7 +180,10 @@ ul li {
     display: none;
   }
   .left {
-    height: 10vh;
+    height: 12vh;
+  }
+  .right {
+    height: 70vh;
   }
   .lists {
     flex-direction: row;
@@ -188,6 +195,7 @@ ul li {
   .filter-todo {
     width: 103px;
     font-size: 16px;
+    height: 26px;
   }
   .stick {
     height: 100px;
@@ -203,7 +211,7 @@ ul li {
     font-size: 15px;
   }
   .fa-check-square {
-    top: -13%;
+    top: 5%;
     font-size: 20px;
     left: 95%;
   }
@@ -217,4 +225,7 @@ ul li {
     font-size: 25px;
     margin-top: 10px;
   }
-} ;
+  .right .select {
+    top: 96px;
+  }
+}
