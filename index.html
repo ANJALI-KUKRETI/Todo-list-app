@@ -28,15 +28,29 @@
           <h1><i class="fas fa-plus"></i></h1>
         </div>
       </nav>
+
+      <div class="modal hidden">
+        <button class="close-modal">&times;</button>
+        <form class="data-input">
+          <label for="title" class="labels">Title:</label>
+          <input type="text" class="title" name="title">
+          <label for="category" class="labels">Category:</label>
+          <input type="text" class="cat" name="cat">
+          <label for="lname" class="labels">Description:</label>
+          <textarea class="des" name="des" rows="5" cols="50"></textarea>
+          <button class="add-task">ADD TASK</button>
+        </form> 
+      </div>
+      <div class="overlay hidden"></div>
       <section class="outer">
       <div class="main">
         <div class="left">
           <div>
             <ul  class="lists">
-              <li class="work"><i class="fas fa-circle"></i>work</li>
-              <li class="study"><i class="fas fa-circle"></i>study</li>
-              <li class="enter"><i class="fas fa-circle"></i>entertainment</li>
-              <li class="code"><i class="fas fa-circle"></i>coding</li>
+              <li class="work"><i class="fas fa-circle worki"></i>work</li>
+              <li class="study"><i class="fas fa-circle studyi"></i>study</li>
+              <li class="enter"><i class="fas fa-circle enteri"></i>entertainment</li>
+              <li class="code"><i class="fas fa-circle codei"></i>coding</li>
             </ul>
           </div>
           <div>
@@ -57,65 +71,22 @@
           </div>
           <div class="stickers">    
             <div class="stick">
+              <div class="tooltip hidden">
+                <div class="delete"><span> Delete</span><i class="fas fa-trash-alt"></i></div>
+                <div class="edit"><span>Edit</span><i class="fas fa-edit"></i></div>
+              </div>
               <div class="stickin">
                 <div>
-                  <h2>Running</h2>
-                  <p>from mandakini bhawan to nagla</p>
+                  <h2 class="t">Running</h2>
+                  <p class="d">from mandakini bhawan to nagla</p>
                 </div>
-                  <i class="fas fa-ellipsis-h"></i>
+                  <i class="fas fa-ellipsis-h c"></i>
               </div>
-              <i class="fas fa-check-square"></i>
-            </div>  
-            <div class="stick">
-              <div class="stickin">
-                <div>
-                  <h2>Running</h2>
-                  <p>from mandakini bhawan to nagla</p>
-                </div>
-                  <i class="fas fa-ellipsis-h"></i>
+              <div class="bottom">
+                <i class="fas fa-circle worki"></i>
+                <i class="fas fa-check-square"></i>
               </div>
-              <i class="fas fa-check-square"></i>
-            </div>  
-            <div class="stick">
-              <div class="stickin">
-                <div>
-                  <h2>Running</h2>
-                  <p>from mandakini bhawan to nagla</p>
-                </div>
-                  <i class="fas fa-ellipsis-h"></i>
-              </div>
-              <i class="fas fa-check-square"></i>
-            </div>  
-            <div class="stick">
-              <div class="stickin">
-                <div>
-                  <h2>Running</h2>
-                  <p>from mandakini bhawan to nagla</p>
-                </div>
-                  <i class="fas fa-ellipsis-h"></i>
-              </div>
-              <i class="fas fa-check-square"></i>
-            </div>  
-            <div class="stick">
-              <div class="stickin">
-                <div>
-                  <h2>Running</h2>
-                  <p>from mandakini bhawan to nagla</p>
-                </div>
-                  <i class="fas fa-ellipsis-h"></i>
-              </div>
-              <i class="fas fa-check-square"></i>
-            </div>  
-            <div class="stick">
-              <div class="stickin">
-                <div>
-                  <h2>Running</h2>
-                  <p>from mandakini bhawan to nagla</p>
-                </div>
-                  <i class="fas fa-ellipsis-h"></i>
-              </div>
-              <i class="fas fa-check-square"></i>
-            </div>  
+            </div>
             </div>
           </div>
       </div>
