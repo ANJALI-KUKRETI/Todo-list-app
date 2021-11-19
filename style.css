@@ -66,16 +66,16 @@ ul li {
   opacity: 0.7;
   cursor: pointer;
 }
-.worki {
+.exercise {
   color: rgb(115, 32, 122);
 }
-.studyi {
+.study {
   color: rgb(122, 230, 79);
 }
-.enteri {
+.entertainment {
   color: rgb(47, 164, 218);
 }
-.codei {
+.coding {
   color: rgb(216, 94, 45);
 }
 .left i {
@@ -133,9 +133,6 @@ ul li {
   cursor: pointer;
 }
 .fa-check-square {
-  /* position: relative;
-  left: 93%;
-  top: 14%; */
   font-size: 26px;
   transition: all 0.5s ease;
   cursor: pointer;
@@ -145,6 +142,11 @@ ul li {
   justify-content: space-between;
 }
 .fa-check-square:hover {
+  color: rgb(43, 95, 19);
+  transform: scale(1.1);
+}
+
+.true {
   color: rgb(43, 95, 19);
   transform: scale(1.1);
 }
@@ -225,6 +227,8 @@ ul li {
 }
 
 /* ---------tooltip----------- */
+.dots:hover {
+}
 .tooltip {
   height: 70px;
   width: 100px;
