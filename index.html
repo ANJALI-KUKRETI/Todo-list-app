@@ -35,7 +35,13 @@
           <label for="title" class="labels">Title:</label>
           <input type="text" class="title" name="title">
           <label for="category" class="labels">Category:</label>
-          <input type="text" class="cat" name="cat">
+          <select name="todosModal" class="cat">
+            <option value="exercise">Exercise</option>
+            <option value="study">Study</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="coding">Coding</option>
+          </select>
+          <!-- <input type="text" class="cat" name="cat">-->
           <label for="lname" class="labels">Description:</label>
           <textarea class="des" name="des" rows="5" cols="50"></textarea>
           <button class="add-task">ADD TASK</button>
@@ -66,14 +72,14 @@
             <select name="todos" class="filter-todo">
               <option value="all">All Tasks</option>
               <option value="completed">Completed</option>
-              <option value="uncompleted">Uncompleted</option>
+              <option value="uncompleted">Ucompleted</option>
             </select>
           </div>
           <div class="stickers">    
-            <div class="stick">
+            <!-- <div class="stick">
               <div class="tooltip hidden">
-                <div class="delete"><span> Delete</span><i class="fas fa-trash-alt"></i></div>
-                <div class="edit"><span>Edit</span><i class="fas fa-edit"></i></div>
+                <div class="delete"> Delete<i class="fas fa-trash-alt"></i></div>
+                <div class="edit">Edit<i class="fas fa-edit"></i></div>
               </div>
               <div class="stickin">
                 <div>
@@ -86,7 +92,7 @@
                 <i class="fas fa-circle exercise"></i>
                 <i class="fas fa-check-square"></i>
               </div>
-            </div>
+            </div> -->
             </div>
           </div>
       </div>
