@@ -47,6 +47,24 @@
           <button class="add-task">ADD TASK</button>
         </form> 
       </div>
+      <div class="modal-up modal hidden">
+        <button class="close-modal">&times;</button>
+        <form class="data-input">
+          <label for="title" class="labels">Title:</label>
+          <input type="text" class="title" name="title">
+          <label for="category" class="labels">Category:</label>
+          <select name="todosModal" class="cat">
+            <option value="exercise">Exercise</option>
+            <option value="study">Study</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="coding">Coding</option>
+          </select>
+          <!-- <input type="text" class="cat" name="cat">-->
+          <label for="lname" class="labels">Description:</label>
+          <textarea class="des" name="des" rows="5" cols="50"></textarea>
+          <button class="update-task">UPDATE</button>
+        </form> 
+      </div>
       <div class="overlay hidden"></div>
       <section class="outer">
       <div class="main">
@@ -70,7 +88,7 @@
         <div class="right">
           <div class="select">
             <select name="todos" class="filter-todo">
-              <option value="all">All Tasks</option>
+              <option value="all" >All Tasks</option>
               <option value="completed">Completed</option>
               <option value="uncompleted">Ucompleted</option>
             </select>

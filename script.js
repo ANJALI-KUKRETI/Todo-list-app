@@ -12,9 +12,7 @@ const work = document.querySelector(".work");
 const study = document.querySelector(".studying");
 const enter = document.querySelector(".enter");
 const code = document.querySelector(".code");
-const all = document.querySelector(".all");
-const completed = document.querySelector(".completed");
-const uncompleted = document.querySelector(".uncompleted");
+const filtertask = document.querySelector(".filter-todo");
 
 // -----event Listeners--------
 
@@ -23,17 +21,18 @@ closemodal.addEventListener("click", closemod);
 addTask.addEventListener("click", inputValues);
 document.addEventListener("DOMContentLoaded", displayold);
 work.addEventListener("click", function () {
-  displaywork("exercise");
+  displayold("exercise");
 });
 study.addEventListener("click", function () {
-  displaywork("study");
+  displayold("study");
 });
 enter.addEventListener("click", function () {
-  displaywork("entertainment");
+  displayold("entertainment");
 });
 code.addEventListener("click", function () {
-  displaywork("coding");
+  displayold("coding");
 });
+filtertask.addEventListener("click", sortedTasks);
 
 // ------------modal and tooltips--------
 
@@ -149,56 +148,82 @@ function displayold(category1) {
     for (let i = 0; i < todos.length; i++) {
       if (todos[i].category == category1) newarr.push(todos[i]);
     }
-    newarr.forEach(function (todo) {
-      let title1 = todo.title;
-      let cat1 = todo.category;
-      let des1 = todo.description;
-      let checkbox = todo.completed;
-      let newtask = `<div class="stick">
-    <div class="tooltip hidden" >
-        <div class="delete" data-id="${todo.id}">Delete<i class="fas fa-trash-alt"></i></div>
-        <div class="edit" data-id="${todo.id}">Edit<i class="fas fa-edit"></i></div>
-      </div>
-      <div class="stickin">
-        <div>
-          <h2 class="t">${title1}</h2>
-          <p class="d">${des1}</p>
-        </div>
-          <i class="fas fa-ellipsis-h c"></i>
-      </div>
-      <div class="bottom">
-        <i class="fas fa-circle ${cat1}"></i>
-        <i class="fas fa-check-square ${checkbox}" data-id="${todo.id}"></i>
-      </div>
-      </div>`;
-      stickers.insertAdjacentHTML("afterbegin", newtask);
-    });
+    allrounder(newarr);
   } else {
-    todos.forEach(function (todo) {
-      let title1 = todo.title;
-      let cat1 = todo.category;
-      let des1 = todo.description;
-      let checkbox = todo.completed;
-      let newtask = `<div class="stick">
-      <div class="tooltip hidden" >
-          <div class="delete" data-id="${todo.id}">Delete<i class="fas fa-trash-alt"></i></div>
-          <div class="edit" data-id="${todo.id}">Edit<i class="fas fa-edit"></i></div>
-        </div>
-        <div class="stickin">
-          <div>
-            <h2 class="t">${title1}</h2>
-            <p class="d">${des1}</p>
-          </div>
-            <i class="fas fa-ellipsis-h c"></i>
-        </div>
-        <div class="bottom">
-          <i class="fas fa-circle ${cat1}"></i>
-          <i class="fas fa-check-square ${checkbox}" data-id="${todo.id}"></i>
-        </div>
-        </div>`;
-      stickers.insertAdjacentHTML("afterbegin", newtask);
-    });
+    allrounder(todos);
   }
+}
+
+//-----------remove local todos------------
+
+function removeLocalTodos(todo) {
+  let todos = JSON.parse(localStorage.getItem("inputvalues")) || [];
+  const toDelete = todo.target.dataset.id;
+  const temp = todos.filter((todo) => todo.id != toDelete);
+  localStorage.setItem("inputvalues", JSON.stringify(temp));
+  displayold();
+  // console.log(toDelete);
+  // console.log(temp);
+}
+
+function completeTasks(todo) {
+  let todos = JSON.parse(localStorage.getItem("inputvalues")) || [];
+  const done = todo.target.dataset.id;
+  for (let i = 0; i < todos.length; i++) {
+    if (todos[i].id == done) {
+      todos[i].completed = true;
+    }
+  }
+  localStorage.setItem("inputvalues", JSON.stringify(todos));
+  displayold();
+}
+
+function sortedTasks(e) {
+  stickers.innerHTML = "";
+  let todos = JSON.parse(localStorage.getItem("inputvalues")) || [];
+  if (e.target.value == "completed") {
+    let newarr = [];
+    for (let i = 0; i < todos.length; i++) {
+      if (todos[i].completed == true) newarr.push(todos[i]);
+    }
+    allrounder(newarr);
+  } else if (e.target.value == "uncompleted") {
+    let newarr = [];
+    for (let i = 0; i < todos.length; i++) {
+      if (todos[i].completed == false) newarr.push(todos[i]);
+    }
+    allrounder(newarr);
+  } else {
+    allrounder(todos);
+  }
+}
+
+function allrounder(taken) {
+  taken.forEach(function (todo) {
+    let title1 = todo.title;
+    let cat1 = todo.category;
+    let des1 = todo.description;
+    let checkbox = todo.completed;
+    let newtask = `<div class="stick">
+  <div class="tooltip hidden" >
+      <div class="delete" data-id="${todo.id}">Delete<i class="fas fa-trash-alt"></i></div>
+      <div class="edit" data-id="${todo.id}">Edit<i class="fas fa-edit"></i></div>
+    </div>
+    <div class="stickin">
+      <div>
+        <h2 class="t">${title1}</h2>
+        <p class="d">${des1}</p>
+      </div>
+        <i class="fas fa-ellipsis-h c"></i>
+    </div>
+    <div class="bottom">
+      <i class="fas fa-circle ${cat1}"></i>
+      <i class="fas fa-check-square ${checkbox}" data-id="${todo.id}"></i>
+    </div>
+    </div>`;
+    stickers.insertAdjacentHTML("afterbegin", newtask);
+  });
+
   const deleteTask = document.querySelectorAll(".delete");
   const editTask = document.querySelectorAll(".edit");
   const dots = document.querySelectorAll(".fa-ellipsis-h");
@@ -230,58 +255,29 @@ function displayold(category1) {
   });
 }
 
-//-----------remove local todos------------
-
-function removeLocalTodos(todo) {
+// --------------edit functionality------------
+function editContent(todo) {
   let todos = JSON.parse(localStorage.getItem("inputvalues")) || [];
-  const toDelete = todo.target.dataset.id;
-  const temp = todos.filter((todo) => todo.id != toDelete);
-  localStorage.setItem("inputvalues", JSON.stringify(temp));
-  displayold();
-  // console.log(toDelete);
+  const toedit = todo.target.dataset.id;
+  // console.log(toedit);
+  const temp = todos.filter((todo) => todo.id == toedit);
+  openmodal();
+  console.log(temp[0].title);
   // console.log(temp);
-}
+  title.value = temp[0].title;
+  descrip.value = temp[0].description;
+  category.value = temp[0].category;
 
-//--------------edit functionality------------
-// function editContent(todo) {
-//   let todos = JSON.parse(localStorage.getItem("inputvalues")) || [];
-//   const toedit = todo.target.dataset.id;
-//   // console.log(toedit);
-//   const temp = todos.filter((todo) => todo.id == toedit);
-//   openmodal();
-//   console.log(temp[0].title);
-//   // console.log(temp);
-//   title.value = temp[0].title;
-//   descrip.value = temp[0].description;
-//   category.value = temp[0].category;
-//   todos.forEach((i) => {
-//     if (i.id == toedit) {
-//       i.title = title.value;
-//       i.category = category.value;
-//       i.description = descrip.value;
-//     }
-//   });
-//   addTask.addEventListener("click", function () {
-//     localStorage.setItem("inputvalues", JSON.stringify(todos));
-//     closemod();
-//     displayold();
-//   });
-// }
-
-function completeTasks(todo) {
-  let todos = JSON.parse(localStorage.getItem("inputvalues")) || [];
-  const done = todo.target.dataset.id;
   for (let i = 0; i < todos.length; i++) {
-    if (todos[i].id == done) {
-      todos[i].completed = true;
+    if (todos[i].id == toedit) {
+      todos[i].title = title.value;
+      todos[i].category = category.value;
+      todos[i].description = descrip.value;
     }
   }
-  localStorage.setItem("inputvalues", JSON.stringify(todos));
-  displayold();
-}
-
-//--------sort according to category---------
-function displaywork(e) {
-  let todos = JSON.parse(localStorage.getItem("inputvalues")) || [];
-  displayold(e);
+  addTask.addEventListener("click", function () {
+    localStorage.setItem("inputvalues", JSON.stringify(todos));
+    closemod();
+    displayold();
+  });
 }
