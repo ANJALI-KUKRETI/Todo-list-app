@@ -2,10 +2,17 @@ const plus = document.querySelector(".fa-plus");
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const closemodal = document.querySelector(".close-modal");
+const updateModal = document.querySelector(".modalUp");
+const updatebtn = document.querySelector(".update");
 const addTask = document.querySelector(".add-task");
+const closeUp = document.querySelector(".closeUp");
 const title = document.querySelector(".title");
 const category = document.querySelector(".cat");
 const descrip = document.querySelector(".des");
+const title1 = document.querySelector(".title1");
+const id1 = document.querySelector(".id1");
+const category1 = document.querySelector(".cat1");
+const descrip1 = document.querySelector(".des1");
 const stickers = document.querySelector(".stickers");
 const stick = document.querySelector(".stick");
 const work = document.querySelector(".work");
@@ -33,12 +40,21 @@ code.addEventListener("click", function () {
   displayold("coding");
 });
 filtertask.addEventListener("click", sortedTasks);
+closeUp.addEventListener("click", closemodalup);
 
 // ------------modal and tooltips--------
 
 function openmodal() {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
+}
+function openmodalup() {
+  updateModal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+}
+function closemodalup() {
+  updateModal.classList.add("hidden");
+  overlay.classList.add("hidden");
 }
 
 function closemod() {
@@ -99,7 +115,6 @@ function displayNew() {
   }></i>
     </div>
     </div>`;
-  // stickers.appendChild(newtask);
   stickers.insertAdjacentHTML("afterbegin", newtask);
 
   const deleteTask = document.querySelectorAll(".delete");
@@ -133,7 +148,6 @@ function displayNew() {
 }
 
 //---------localstorage---------
-
 function displayold(category1) {
   stickers.innerHTML = "";
   let todos = JSON.parse(localStorage.getItem("inputvalues")) || [];
@@ -155,7 +169,6 @@ function displayold(category1) {
 }
 
 //-----------remove local todos------------
-
 function removeLocalTodos(todo) {
   let todos = JSON.parse(localStorage.getItem("inputvalues")) || [];
   const toDelete = todo.target.dataset.id;
@@ -261,23 +274,37 @@ function editContent(todo) {
   const toedit = todo.target.dataset.id;
   // console.log(toedit);
   const temp = todos.filter((todo) => todo.id == toedit);
-  openmodal();
-  console.log(temp[0].title);
+  openmodalup();
   // console.log(temp);
-  title.value = temp[0].title;
-  descrip.value = temp[0].description;
-  category.value = temp[0].category;
+  title1.value = temp[0].title;
+  descrip1.value = temp[0].description;
+  category1.value = temp[0].category;
+  id1.value = temp[0].id;
+}
 
-  for (let i = 0; i < todos.length; i++) {
-    if (todos[i].id == toedit) {
-      todos[i].title = title.value;
-      todos[i].category = category.value;
-      todos[i].description = descrip.value;
+updatebtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  let todos = JSON.parse(localStorage.getItem("inputvalues")) || [];
+  let titleInput = title1.value;
+  let categoryInput = category1.value;
+  let descripInput = descrip1.value;
+  let id = id1.value;
+
+  function updatedArr(td) {
+    if (td.id == id) {
+      return {
+        title: titleInput,
+        category: categoryInput,
+        completed: false,
+        description: descripInput,
+        id: id,
+      };
+    } else {
+      return td;
     }
   }
-  addTask.addEventListener("click", function () {
-    localStorage.setItem("inputvalues", JSON.stringify(todos));
-    closemod();
-    displayold();
-  });
-}
+  const newTodos = todos.map(updatedArr);
+  localStorage.setItem("inputvalues", JSON.stringify(newTodos));
+  closemodalup();
+  displayold();
+});

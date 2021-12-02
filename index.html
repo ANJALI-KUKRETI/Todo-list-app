@@ -43,17 +43,19 @@
           </select>
           <!-- <input type="text" class="cat" name="cat">-->
           <label for="lname" class="labels">Description:</label>
-          <textarea class="des" name="des" rows="5" cols="50"></textarea>
+          <textarea class="des" name="des" rows="4" cols="50"></textarea>
           <button class="add-task">ADD TASK</button>
         </form> 
       </div>
-      <div class="modal-up modal hidden">
-        <button class="close-modal">&times;</button>
-        <form class="data-input">
+
+      <div class="modalUp modal hidden">
+        <button class="close-modal closeUp">&times;</button>
+        <form class="data-input id1">
+          <!-- <input type="text" class="id1" name="todoId"> -->
           <label for="title" class="labels">Title:</label>
-          <input type="text" class="title" name="title">
+          <input type="text" class="title1" name="title">
           <label for="category" class="labels">Category:</label>
-          <select name="todosModal" class="cat">
+          <select name="todosModal" class="cat1">
             <option value="exercise">Exercise</option>
             <option value="study">Study</option>
             <option value="entertainment">Entertainment</option>
@@ -61,10 +63,11 @@
           </select>
           <!-- <input type="text" class="cat" name="cat">-->
           <label for="lname" class="labels">Description:</label>
-          <textarea class="des" name="des" rows="5" cols="50"></textarea>
-          <button class="update-task">UPDATE</button>
+          <textarea class="des1" name="des" rows="5" cols="50"></textarea>
+          <button class="update">UPDATE</button>
         </form> 
       </div>
+     
       <div class="overlay hidden"></div>
       <section class="outer">
       <div class="main">

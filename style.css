@@ -195,6 +195,7 @@ ul li {
 .data-input {
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: space-evenly;
 }
 .modal label {
@@ -210,12 +211,21 @@ ul li {
   border-radius: 3px;
   font-size: 15px;
 }
+.modal .cat1 {
+  border: none;
+  padding: 5px;
+  border: none;
+  outline: 0px;
+  border-radius: 3px;
+  font-size: 15px;
+}
 .modal textarea {
   border: none;
   border-radius: 3px;
   font-size: 15px;
 }
-.add-task {
+.add-task,
+.update {
   width: 10rem;
   height: 2rem;
   margin: 15px auto;
@@ -236,7 +246,9 @@ ul li {
   border-radius: 3px;
   font-size: 15px;
 }
-
+.cat1 {
+  border: none;
+}
 .modal .option {
   font-size: 15px;
   font-weight: bold;
@@ -390,8 +402,7 @@ ul li {
   .right .select {
     top: 96px;
   }
-  .modal,
-  .modal-up {
+  .modal {
     width: 50%;
     height: 50%;
   }
