@@ -1,4 +1,7 @@
 # 📝 Todo-list-app
+
+### Live Link
+▶️ <a href="https://anjali-kukreti.github.io/Todo-list-app/">Click Here</a>
 ### A Simple web todo list app with localstorage and vanilla javascript.
  
 <code>+</code> Add task
@@ -12,9 +15,6 @@
 <code>+</code> List of incomplete tasks
 
 <code>+</code> Sorting based on categories
-
-▶️ <a href="https://anjali-kukreti.github.io/Todo-list-app/">Live Preview</a>
-
 
 # 💻Tech Stack
 
